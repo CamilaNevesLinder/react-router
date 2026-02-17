@@ -42,14 +42,9 @@ export const Aside = () => {
               Sobre nós
             </AsideLink>
           </li>
+
           <li>
-            <AsideLink href="/auth/login">
-              <IconLogin />
-              Login
-            </AsideLink>
-          </li>
-          <li>
-            <AsideLink href="#">
+            <AsideLink href="/auth/logout">
               <IconLogin />
               Logout
             </AsideLink>
