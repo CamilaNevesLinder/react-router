@@ -7,14 +7,35 @@ import { Feed } from "./pages/Feed/index.jsx";
 import { BlogPost } from "./pages/BlogPost/index.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+//browserRouter serve para ativar o sistema de rotas, tudo que estiver dentro do browserRoutes pode usar rotas
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/auth/register" element={<Register />} />
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/" element={<Feed />} />
-        <Route path="/blog-post" element={<BlogPost />} />
+        <Route path="/auth">
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+
+        <Route path="/">
+          <Route
+            path=""
+            element={
+              <ProtectedRoute>
+                <Feed />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="blog-post"
+            element={
+              <ProtectedRoute>
+                <BlogPost />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>,
