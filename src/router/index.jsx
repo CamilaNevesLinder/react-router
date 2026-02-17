@@ -5,6 +5,9 @@ import { BlogPost } from "../pages/BlogPost/index.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRouter/index.jsx";
 import { Logout } from "../pages/Logout/index.jsx";
+import { AuthLayout } from "../layouts/Auth/index.jsx";
+import { AppLayout } from "../layouts/App/index.jsx";
+import { NotFound } from "../pages/NotFound/index.jsx";
 
 //browserRouter serve para ativar o sistema de rotas, tudo que estiver dentro do browserRoutes pode usar rotas
 
@@ -12,13 +15,13 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/auth">
+        <Route path="/auth" element={<AuthLayout />}>
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
         </Route>
 
-        <Route path="/">
+        <Route path="/" element={<AppLayout />}>
           <Route
             path=""
             element={
@@ -35,6 +38,7 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
